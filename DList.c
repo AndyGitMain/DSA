@@ -42,12 +42,20 @@ void DInsertLast(DList *plist, DATA data)
 
 DATA DRemoveFirst(DList *plist)
 {
-
+	Node *delNode = NULL;
+	delNode = plist->first->next;
+	plist->first->next = plist->first->next->next;
+	plist->first->next->prev = delNode->prev;
+	free(delNode);
 }
 
 DATA DRemoveLast(DList *plist)
 {
-
+	Node *delNode = NULL;
+	delNode = plist->last->prev;
+	plist->last->prev = delNode->prev;
+	delNode->prev->next = plist->last;
+	free(delNode);
 }
 
 DATA DRemove(DList *plist)
@@ -57,7 +65,14 @@ DATA DRemove(DList *plist)
 
 DATA DSearch(DList *plist, DATA data)
 {
+	Node *sNode = plist->first;
 
+	while (sNode->next != plist->last) {
+		if (sNode->next->data == data)
+			return data;
+		sNode = sNode->next;
+	}
+	return -1;
 }
 
 DATA DNext(DList *plist)
@@ -70,13 +85,26 @@ DATA DPrev(DList *plist)
 
 }
 
-int DGetCount()
+int DGetCount(DList *plist)
 {
-	return 
+	return plist->numOfData;
 }
 
 int IsEmpty(DList *plist)
 {
 	return plist->numOfData == 0 ? TRUE : FALSE;
 }
+
+void printData(DList *plist)
+{
+	Node *printNode = plist->first;
+	while (printNode->next != plist->last) {
+		printf("%d ", printNode->next->data);
+		printNode = printNode->next;
+	}
+	printf("\n");
+}
+
+
+
 

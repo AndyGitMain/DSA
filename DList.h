@@ -27,8 +27,9 @@ DATA DRemove(DList *plist);
 DATA DSearch(DList *plist, DATA data);
 DATA DNext(DList *plist);
 DATA DPrev(DList *plist);
-int DGetCount();
+int DGetCount(DList *plist);
 int IsEmpty(DList *plist);
+void printData(DList *plist);
 
 #endif //__DLIST_H__
 
