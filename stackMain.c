@@ -2,24 +2,24 @@
 
 int main(void)
 {
-	STACK myStack;
+	ArrayStack myStack;
 
-	myStackInit(&myStack);
-	myPush(&myStack, 10);
-	printStack(&myStack);
-	myPush(&myStack, 20);
-	printStack(&myStack);
-	myPush(&myStack, 30);
-	printStack(&myStack);
-	myPush(&myStack, 40);
-	printStack(&myStack);
+	SStackInit(&myStack);
+	SPush(&myStack, 10);
+	SPrintStack(&myStack);
+	SPush(&myStack, 20);
+	SPrintStack(&myStack);
+	SPush(&myStack, 30);
+	SPrintStack(&myStack);
+	SPush(&myStack, 40);
+	SPrintStack(&myStack);
 
-	myPop(&myStack);
-	printStack(&myStack);
-	myPop(&myStack);
-	printStack(&myStack);
-	myPop(&myStack);
-	printStack(&myStack);
+	SPop(&myStack);
+	SPrintStack(&myStack);
+	SPop(&myStack);
+	SPrintStack(&myStack);
+	SPop(&myStack);
+	SPrintStack(&myStack);
 	
 	return 0;
 }

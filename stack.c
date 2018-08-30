@@ -2,51 +2,52 @@
 #include <string.h>
 #include "stack.h"
 
-void myStackInit(STACK *pStack)
+void SStackInit(ArrayStack *pStack)
 {
-	memset(pStack->buf, 0, BUF_SIZE);
+	//memset(pStack->buf, 0, BUF_SIZE);
+	for (int i = 0; i < BUF_SIZE; i++)
+		pStack->buf[i] = 0;
 	pStack->numOfData = 0;
 }
 
-int myPush(STACK *pStack, DATA data)
+int SPush(ArrayStack *pStack, DATA data)
 {
-	if (IsFull(pStack))
+	if (SIsFull(pStack))
 		return -1;
 	pStack->buf[pStack->numOfData] = data;
 	pStack->numOfData++;
 }
 
-DATA myPop(STACK *pStack)
+DATA SPop(ArrayStack *pStack)
 {
 	DATA ret;
-	if (IsEmpty(pStack))
+	if (SIsEmpty(pStack))
 		return -1;
 	ret = pStack->buf[pStack->numOfData];
 	pStack->numOfData--;
 	return ret;
 }
 
-int IsFull(STACK *pStack)
+int SIsFull(ArrayStack *pStack)
 {
 	return pStack->numOfData == BUF_SIZE ? TRUE : FALSE;
 }
 
-int IsEmpty(STACK *pStack)
+int SIsEmpty(ArrayStack *pStack)
 {
 	return pStack->numOfData == 0 ? TRUE : FALSE;
 }
 
-int printStack(STACK *pStack)
+int SPrintStack(ArrayStack *pStack)
 {
 	int cur = 0;
 
-	if (IsEmpty(pStack))
+	if (SIsEmpty(pStack))
 		return -1;
 	
-	cur = pStack->numOfData;
-	while (cur > 0) {
+	while (cur < pStack->numOfData) {
 		printf("%d ", pStack->buf[cur]);
-		cur--;
+		cur++;
 	}
 	printf("\n");
 }

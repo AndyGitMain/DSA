@@ -8,18 +8,18 @@
 typedef int DATA;
 
 
-typedef struct stack {
+typedef struct _arrayStack {
     DATA buf[BUF_SIZE];
     int numOfData;
-} STACK;
+} ArrayStack;
 
 
-void myStackInit(STACK *pStack);
-int myPush(STACK *pStack, DATA data);
-DATA myPop(STACK *pStack);
-int IsFull(STACK *pStack);
-int IsEmpty(STACK *pStack);
-int printStack(STACK *pStack);
+void SStackInit(ArrayStack *pStack);
+int SPush(ArrayStack *pStack, DATA data);
+DATA SPop(ArrayStack *pStack);
+int SIsFull(ArrayStack *pStack);
+int SIsEmpty(ArrayStack *pStack);
+int SPrintStack(ArrayStack *pStack);
 
 
 #endif //__STACK_H__
