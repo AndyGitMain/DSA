@@ -8,7 +8,6 @@ BTreeNode* MakeNode(DATA data)
 	newNode->data = data;
 	newNode->left = NULL;
 	newNode->right = NULL;
-	newNode->action = DisplayData;
 	return newNode;
 }
 
@@ -48,34 +47,34 @@ void MakeRightSubTree(BTreeNode *main, BTreeNode *sub)
 	main->right = sub;
 }
 
-void InorderTraverse(BTreeNode *bt)
+void InorderTraverse(BTreeNode *bt, VisitFucPtr action)
 {
 	if (bt == NULL)
 		return;
 
-	InorderTraverse(bt->left);
-	bt->action(bt);
-	InorderTraverse(bt->right);
+	InorderTraverse(bt->left, action);
+	action(bt);
+	InorderTraverse(bt->right, action);
 }
 
-void PreorderTraverse(BTreeNode *bt)
+void PreorderTraverse(BTreeNode *bt, VisitFucPtr action)
 {
 	if (bt == NULL)
 		return;
 	
-	bt->action(bt);
-	PreorderTraverse(bt->left);
-	PreorderTraverse(bt->right);
+	action(bt);
+	PreorderTraverse(bt->left, action);
+	PreorderTraverse(bt->right, action);
 }
 
-void PostorderTraverse(BTreeNode *bt)
+void PostorderTraverse(BTreeNode *bt, VisitFucPtr action)
 {
 	if (bt == NULL)
 		return;
 
-	PostorderTraverse(bt->left);
-	PostorderTraverse(bt->right);
-	bt->action(bt);
+	PostorderTraverse(bt->left, action);
+	PostorderTraverse(bt->right, action);
+	action(bt);
 }
 
 void DisplayData(BTreeNode *bt)

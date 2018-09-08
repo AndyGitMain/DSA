@@ -11,7 +11,9 @@ int main(void)
 	MakeRightSubTree(bt1, bt3);
 	MakeLeftSubTree(bt2, bt4);
 
-	InorderTraverse(bt1);
+	InorderTraverse(bt1, DisplayData);
 
 	return 0;
 }
+
+
